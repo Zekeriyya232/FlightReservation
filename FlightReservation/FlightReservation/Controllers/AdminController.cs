@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using FlightReservation.Entity;
+using FlightReservation.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
@@ -628,6 +630,31 @@ namespace WebProje2023.Controllers
 				return View("TicketGet", ticketVM);
 			}
 			return NotFound();
+		}
+
+		public IActionResult AirportGet()
+		{
+			List<AirportDB> airport = _databaseContex.Airports.ToList();
+			List<AirportVM> model = new();
+
+			foreach(AirportDB item in airport)
+			{
+				model.Add(new AirportVM
+				{
+					Id = item.Id,
+					havalimaniAdi = item.havalimaniAdi,
+					havalimaniKisaltma=item.havalimaniKisaltma,
+					sehir=item.sehir,
+					ulke=item.ulke,
+				});
+			}
+
+			return View(model);
+		}
+
+		public IActionResult AirportCreate()
+		{
+			
 		}
 	}
 }

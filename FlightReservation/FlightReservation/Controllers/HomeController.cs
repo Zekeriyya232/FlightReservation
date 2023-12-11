@@ -81,16 +81,28 @@ namespace WebProje2023.Controllers
 			return View(model);
 		}
 
-		[HttpPost]
-		public IActionResult SelectTicket(int RouteId)
+		
+		public IActionResult SelectSeat(int Id)
 		{
-			RoutesDB route = _databaseContex.Routes.Find(RouteId);
+            RoutesDB route = _databaseContex.Routes.Find(Id);
+			PlaneDB plane = _databaseContex.Plane.SingleOrDefault(x => x.ucakModel.ToUpper() ==route.ucakModel.ToUpper());
+			ViewBag.koltukSayisi = plane.koltukSayisi;
+
+			return View();
+
+         
+
+        }
+		[HttpPost]
+		public IActionResult SelectSeat(int Id , string koltukNumarasi)
+		{
+            RoutesDB route = _databaseContex.Routes.Find(Id);
             string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
             int intId = Convert.ToInt32(id);
-			KullaniciDB kullanici = _databaseContex.Kullanici.Find(intId);
+            KullaniciDB kullanici = _databaseContex.Kullanici.Find(intId);
             TicketDB ticket = new()
-			{
-				kullaniciId = kullanici.Id,
+            {
+                kullaniciId = kullanici.Id,
                 havalimaniKalkis = route.havalimaniKalkis,
                 havalimaniVaris = route.havalimaniVaris,
                 sehirKalkis = route.sehirKalkis,
@@ -100,23 +112,33 @@ namespace WebProje2023.Controllers
                 yolcuAdi = kullanici.kullaniciAdi,
                 yolcuSoyadi = kullanici.KullaniciSoyadi,
                 ucakModel = route.ucakModel,
-                koltukNo = 
+                koltukNo = koltukNumarasi,
+
             };
+			_databaseContex.SaveChanges();
 
+			TicketVM ticketVM = new()
+			{
+				kullaniciId = kullanici.Id,
+				havalimaniKalkis = route.havalimaniKalkis,
+				havalimaniVaris = route.havalimaniVaris,
+				sehirKalkis = route.sehirKalkis,
+				sehirVaris = route.sehirVaris,
+				saatKalkis = route.kalkisSaat,
+				saatVaris = route.varisSaat,
+				yolcuAdi = kullanici.kullaniciAdi,
+				yolcuSoyadi = kullanici.KullaniciSoyadi,
+				ucakModel = route.ucakModel,
+				koltukNo = koltukNumarasi,
+			};
 
-            
+			return View("ShowTicket", ticketVM);
+        }
 
+		public IActionResult ShowTicket(TicketVM ticketVM) {
 
+			return View(ticketVM);
 		}
-
-		public IActionResult SelectSeat(int koltukSayisi)
-		{
-
-		}
-
-
-
-
 
 
 		public IActionResult Privacy()
