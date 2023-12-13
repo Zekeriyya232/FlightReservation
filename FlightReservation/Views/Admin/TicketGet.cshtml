@@ -1,0 +1,71 @@
+﻿@model List<TicketVM>
+
+@{
+
+	ViewData["Title"] = "Biletler";
+}
+
+<div class="row">
+	<div class="col">
+		<h1 class="display-4">@ViewData["Title"]</h1>
+		<hr />
+	</div>
+</div>
+
+<div class="row mb-3">
+	<div class="col">
+		<a asp-action="TicketCreate" class="btn btn-primary btn-sm"><i class="fa fa-plus me-2"></i>Yeni Bilet</a>
+	</div>
+</div>
+
+<div class="row mb-3">
+	<div class="col">
+		<table class="table table-hover table-sn">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Kalkış Havalimanı</th>
+					<th>Varış Havalimanı</th>
+					<th>Kalkış Şehri</th>
+					<th>Varış Şehri</th>
+					<th>Kalkış Tarihi</th>
+					<th>Kalkış Saati</th>
+					<th>Varış Saati</th>
+					<th>Uçak Modeli</th>
+					<th>Bilet Fiyatı</th>
+					<th>Yolcu Id</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (TicketVM ticket in Model)
+				{
+					<tr>
+						<td>@ticket.Id</td>
+						<td>@ticket.havalimaniKalkis</td>
+						<td>@ticket.havalimaniVaris</td>
+						<td>@ticket.sehirKalkis</td>
+						<td>@ticket.sehirVaris</td>					
+						<td>@ticket.tarihKalkis</td>
+						<td>@ticket.saatKalkis</td>
+						<td>@ticket.saatVaris</td>
+						<td>@ticket.ucakModel</td>
+						<td>@ticket.biletFiyat</td>
+						<td>@ticket.kullaniciId</td>
+						
+						<td class="text-end">
+							<a asp-action="TicketEdit" asp-controller="Admin" asp-route-id="@ticket.Id" class="btn btn-info btn-sm text-white"><i class="fa fa-edit me-2"></i>Düzenle</a>
+							<a asp-action="TicketDelete" asp-route-id="@ticket.Id"
+							   onclick="return confirm('Bu bileti silmek istediğinize emin misiniz ? ')"
+							   class="btn btn-danger btn-sm text-white"><i class="fa fa-trash me-2"></i>Sil</a>
+
+							   <!--buraya bilet sahibinin bilgilerini isteyebilecek bir tuş konulabilir Id ile iste-->
+
+						</td>
+
+
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>

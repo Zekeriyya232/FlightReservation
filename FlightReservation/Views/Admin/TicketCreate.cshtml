@@ -1,0 +1,137 @@
+﻿@model TicketEditVM
+@{
+	ViewData["Title"] = "Kullanıcı Oluştur";
+}
+
+<div class="row">
+	<div class="col-4 offset-4">
+		<h1 class="display-4 border-bottom text-center pb-2">@ViewData["Title"]</h1>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-4 offset-4">
+		<form asp-action="KullaniciCreate">
+			<div asp-validation-summary="ModelOnly" class="text-warning small"></div>
+
+			<div class="row justify-content-between">
+
+				<div class="form-outline col-6 mb-2">
+					<span asp-validation-for="yolcuAdi" class="text-warning small"></span>
+					<input asp-for="yolcuAdi" type="text" class="form-control"
+						   placeholder="" />
+					<label class="form-label" asp-for="yolcuAdi">Yolcu Adı</label>
+
+				</div>
+
+				<div class="form-outline col-6 mb-2">
+					<span asp-validation-for="yolcuSoyadi" class="text-warning small"></span>
+					<input asp-for="yolcuSoyadi" type="text" class="form-control"
+						   placeholder="" />
+					<label class="form-label" asp-for="yolcuSoyadi">Yolcu Soyadı</label>
+
+				</div>
+			</div>
+
+			<div class="row justify-content-between">
+
+				<div class="form-outline col-6 mb-2">
+					<span asp-validation-for="havalimaniKalkis" class="text-warning small"></span>
+					<input asp-for="havalimaniKalkis" type="text" class="form-control"
+						   placeholder="" />
+					<label class="form-label" asp-for="havalimaniKalkis">Kalkış Havalimanı</label>
+
+				</div>
+				<div class="form-outline col-6 mb-2">
+					<span asp-validation-for="havalimaniVaris" class="text-warning small"></span>
+					<input asp-for="havalimaniVaris" type="text" class="form-control"
+						   placeholder="" />
+					<label class="form-label" asp-for="havalimaniVaris">Varış Havalimanı</label>
+
+				</div>
+			</div>
+
+			<div class="row justify-content-between">
+
+				<div class="form-outline col-6 mb-2">
+					<span asp-validation-for="sehirKalkis" class="text-warning small"></span>
+					<input asp-for="sehirKalkis" type="text" class="form-control"
+						   placeholder="" />
+					<label class="form-label" asp-for="sehirKalkis">Kalkış Şehri</label>
+
+				</div>
+
+
+				<div class="form-outline col-6 mb-2">
+					<span asp-validation-for="sehirVaris" class="text-warning small"></span>
+					<input asp-for="sehirVaris" type="text" class="form-control"
+						   placeholder="" />
+					<label class="form-label" asp-for="sehirVaris">Varış Şehri</label>
+
+				</div>
+
+			</div>
+
+			<div class="form-outline mb-2">
+				<span asp-validation-for="tarihKalkis" class="text-warning small"></span>
+				<input asp-for="tarihKalkis" type="date" class="form-control" />
+				<label class="form-label" asp-for="tarihKalkis">Kalkış Tarihi</label>
+			</div>
+
+			<div class="row justify-content-between">
+
+				<div class="form-outline col-6 mb-2">
+					<span asp-validation-for="saatKalkis" class="text-warning small"></span>
+					<input asp-for="saatKalkis" type="time" class="form-control" />
+					<label class="form-label" asp-for="saatKalkis">Kalkış Saati</label>
+				</div>
+
+				<div class="form-outline col-6 mb-2">
+					<span asp-validation-for="saatVaris" class="text-warning small"></span>
+					<input asp-for="saatVaris" type="time" class="form-control" />
+					<label class="form-label" asp-for="saatVaris">Varış Saati</label>
+				</div>
+
+			</div>
+
+			<div class="form-outline col-6 mb-2">
+				<span asp-validation-for="ucakModel" class="text-warning small"></span>
+				<input asp-for="ucakModel" type="text" class="form-control"
+					   placeholder="" />
+				<label class="form-label" asp-for="ucakModel">Uçak Modeli</label>
+
+			</div>
+
+			<div class="form-outline col-6 mb-2">
+				<span asp-validation-for="koltukNo" class="text-warning small"></span>
+				<input asp-for="koltukNo" type="text" class="form-control"
+					   placeholder="" />
+				<label class="form-label" asp-for="koltukNo">Koltuk No</label>
+
+			</div>
+
+			<div class="form-outline col-6 mb-2">
+				<span asp-validation-for="kullaniciId" class="text-warning small"></span>
+				<input asp-for="kullaniciId" type="number" class="form-control"
+					   placeholder="" />
+				<label class="form-label" asp-for="kullaniciId">Kullanıcı ID</label>
+
+			</div>
+
+			<div class="form-outline col-6 mb-2">
+				<span asp-validation-for="biletFiyat" class="text-warning small"></span>
+				<input asp-for="biletFiyat" type="number" min="0.00" max="100000.00" step="100" class="form-control"
+					   placeholder="" />
+				<label class="form-label" asp-for="biletFiyat">Bilet Fiyatı</label>
+
+			</div>
+
+			<div class="text-center pt-1 mb-5 pb-1">
+				<button class="btn btn-primary col-12 gradient-custom-2 mb-3" type="submit">
+					<i class="fa-solid fa-save me-2"></i> Save
+				</button>
+				<br />
+			</div>
+		</form>
+	</div>
+</div>

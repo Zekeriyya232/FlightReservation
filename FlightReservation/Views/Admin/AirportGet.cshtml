@@ -1,0 +1,55 @@
+﻿@model List<AirportVM>
+
+@{
+
+	ViewData["Title"] = "Kullanıcılar";
+}
+
+<div class="row">
+	<div class="col">
+		<h1 class="display-4">@ViewData["Title"]</h1>
+		<hr />
+	</div>
+</div>
+
+<div class="row mb-3">
+	<div class="col">
+		<a asp-action="AirportCreate" class="btn btn-primary btn-sm"><i class="fa fa-plus me-2"></i>Yeni Havalimanı</a>
+	</div>
+</div>
+
+<div class="row mb-3">
+	<div class="col">
+		<table class="table table-hover table-sn">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Havalimanı Adı</th>
+					<th>Havalimanı Kısaltması</th>
+					<th>Şehir</th>
+					<th>Ülke</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (AirportVM airport in Model)
+				{
+					<tr>
+						<td>@airport.Id</td>
+						<td>@airport.havalimaniAdi</td>
+						<td>@airport.havalimaniKisaltma</td>
+						<td>@airport.sehir</td>
+						<td>@airport.ulke</td>
+						
+						<td class="text-end">
+							<a asp-action="AirportEdit" asp-controller="Admin" asp-route-id="@airport.Id" class="btn btn-info btn-sm text-white"><i class="fa fa-edit me-2"></i>Düzenle</a>
+							<a asp-action="AirportDelete" asp-route-id="@airport.Id"
+							   onclick="return confirm('Bu havalimanınını silmek istediğinize emin misiniz @airport.havalimaniAdi? ')"
+							   class="btn btn-danger btn-sm text-white"><i class="fa fa-trash me-2"></i>Sil</a>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>

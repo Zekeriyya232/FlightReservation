@@ -1,0 +1,66 @@
+﻿@model List<RoutesVM>
+
+@{
+
+	ViewData["Title"] = "Rotalar";
+}
+
+<div class="row">
+	<div class="col">
+		<h1 class="display-4">@ViewData["Title"]</h1>
+		<hr />
+	</div>
+</div>
+
+<div class="row mb-3">
+	<div class="col">
+		<a asp-action="RouteCreate" class="btn btn-primary btn-sm"><i class="fa fa-plus me-2"></i>Yeni Rota</a>
+	</div>
+</div>
+
+<div class="row mb-3">
+	<div class="col">
+		<table class="table table-hover table-sn">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Kalkış Şehri</th>
+					<th>Varış Şehri</th>
+					<th>Kalkış Havalimanı</th>
+					<th>Varış Havalimanı</th>
+					<th>Kalkış Tarihi</th>
+					<th>Kalkış Saati</th>
+					<th>Varış Saati</th>
+					<th>Uçak Modeli</th>
+					<th>Bilet Fiyatı</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (RoutesVM rota in Model)
+				{
+					<tr>
+						<td>@rota.Id</td>
+						<td>@rota.sehirKalkis</td>
+						<td>@rota.sehirVaris</td>
+						<td>@rota.havalimaniKalkis</td>
+						<td>@rota.havalimaniVaris</td>
+						<td>@rota.tarihKalkis</td>
+						<td>@rota.kalkisSaat</td>
+						<td>@rota.varisSaat</td>
+						<td>@rota.ucakModel</td>
+						<td>@rota.biletFiyat</td>
+
+						
+						<td class="text-end">
+							<a asp-action="RouteEdit" asp-controller="Admin" asp-route-id="@rota.Id" class="btn btn-info btn-sm text-white"><i class="fa fa-edit me-2"></i>Düzenle</a>
+							<a asp-action="RouteDelete" asp-route-id="@rota.Id"
+							   onclick="return confirm('Bu rotayı silmek istediğinize emin misiniz @rota.havalimaniKalkis+@rota.havalimaniVaris? ')"
+							   class="btn btn-danger btn-sm text-white"><i class="fa fa-trash me-2"></i>Sil</a>
+
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>

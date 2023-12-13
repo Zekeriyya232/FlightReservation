@@ -1,0 +1,50 @@
+﻿@model List<PlaneVM>
+
+@{
+
+	ViewData["Title"] = "Uçaklar";
+}
+
+<div class="row">
+	<div class="col">
+		<h1 class="display-4">@ViewData["Title"]</h1>
+		<hr />
+	</div>
+</div>
+
+<div class="row mb-3">
+	<div class="col">
+		<a asp-action="PlaneCreate" class="btn btn-primary btn-sm"><i class="fa fa-plus me-2"></i>Yeni Uçak</a>
+	</div>
+</div>
+
+<div class="row mb-3">
+	<div class="col">
+		<table class="table table-hover table-sn">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Uçak Model</th>
+					<th>Koltuk Sayısı</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (PlaneVM plane in Model)
+				{
+					<tr>
+						<td>@plane.Id</td>
+						<td>@plane.ucakModel</td>
+						<td>@plane.koltukSayisi</td>
+						
+						<td class="text-end">
+							<a asp-action="PlaneEdit" asp-controller="Admin" asp-route-id="@plane.Id" class="btn btn-info btn-sm text-white"><i class="fa fa-edit me-2"></i>Düzenle</a>
+							<a asp-action="PlaneDelete" asp-route-id="@plane.Id"
+							   onclick="return confirm('Bu kullanıcıyı silmek istediğinize emin misiniz @plane.ucakModel? ')"
+							   class="btn btn-danger btn-sm text-white"><i class="fa fa-trash me-2"></i>Sil</a>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>

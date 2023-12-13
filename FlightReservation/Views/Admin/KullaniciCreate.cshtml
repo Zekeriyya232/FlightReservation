@@ -1,0 +1,98 @@
+﻿@model KullaniciCreateVM
+@{
+	ViewData["Title"] = "Kullanıcı Oluştur";
+}
+
+<div class="row">
+	<div class="col-4 offset-4">
+		<h1 class="display-4 border-bottom text-center pb-2">@ViewData["Title"]</h1>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-4 offset-4">
+		<form asp-action="KullaniciCreate">
+			<div asp-validation-summary="ModelOnly" class="text-warning small"></div>
+
+			<div class="row justify-content-between">
+				<div class="form-outline col-6 mb-2">
+					<span asp-validation-for="kullaniciAdi" class="text-warning small"></span>
+					<input asp-for=" kullaniciAdi" type="text" class="form-control"
+						   placeholder="" />
+					<label class="form-label" asp-for=" kullaniciAdi">Kullanıcı Adı</label>
+
+				</div>
+				<div class="form-outline col-6 mb-2">
+					<span asp-validation-for="kullaniciSoyadi" class="text-warning small"></span>
+					<input asp-for=" kullaniciSoyadi" type="text" class="form-control"
+						   placeholder="" />
+					<label class="form-label" asp-for=" kullaniciSoyadi">Kullanıcı Soyadı</label>
+
+				</div>
+			</div>
+
+			<div class="form-outline mb-2">
+				<span asp-validation-for=" Phone" class="text-warning small"></span>
+				<input asp-for="Phone" type="text" class="form-control"
+					   placeholder="000 000 0000" pattern="[0-9]{3} [0-9]{3} [0-9]{4}" />
+				<label class="form-label" asp-for="Phone">Telefon</label>
+
+			</div>
+
+			<div class="form-outline mb-2">
+				<span asp-validation-for="kullaniciDogum" class="text-warning small"></span>
+				<input asp-for="kullaniciDogum" type="date" class="form-control" />
+				<label class="form-label" asp-for="kullaniciDogum">Doğum Tarihi</label>
+
+			</div>
+
+			<div class="form-outline mb-2">
+				<span asp-validation-for=" kullaniciEmail" class="text-warning small"></span>
+				<input asp-for=" kullaniciEmail" type="email" class="form-control"
+					   placeholder="Email Adress" />
+				<label class="form-label" asp-for=" kullaniciEmail">Email</label>
+
+			</div>
+
+			<div class="form-outline mb-2">
+				<span asp-validation-for="KullaniciSifre" class="text-warning small"></span>
+				<input asp-for="KullaniciSifre" type="password" class="form-control" placeholder="*******" />
+				<label class="form-label" asp-for="KullaniciSifre">Password</label>
+
+			</div>
+
+			<div class="form-outline mb-2">
+				<span asp-validation-for="KullaniciSifreKontrol" class="text-warning small"></span>
+				<input asp-for="KullaniciSifreKontrol" type="password" class="form-control" placeholder="*******" />
+				<label class="form-label" asp-for="KullaniciSifreKontrol">RE-Password</label>
+
+			</div>
+
+			<div class="form-outline mb-2">
+				<span asp-validation-for="Role" class="form-label"></span>
+				<select asp-for="Role" class="form-control">
+					<option value="">Rol Seçiniz</option>
+					<option value="admin">Admin</option>
+					<option value="user">User</option>
+				</select>
+				<label class="form-label" asp-for="Role">Role</label>
+			</div>
+
+			<div class="form-outline mb-2">
+				<div class="form-check">
+					<input asp-for="Locked" type="checkbox" class="form-check-input" />
+					<label class="form-check-label" asp-for="Locked">
+						Locked
+					</label>
+				</div>
+			</div>
+
+			<div class="text-center pt-1 mb-5 pb-1">
+				<button class="btn btn-primary col-12 gradient-custom-2 mb-3" type="submit">
+					<i class="fa-solid fa-save me-2"></i> Save
+				</button>
+				<br />
+			</div>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebProje2023</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    
+    <link rel="stylesheet" href="~/WebProje2023.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <ul class="nav justify-content-center navbar-brand">
+            <li class="nav-item ">
+                <a class="nav-link active navbar-text-color" asp-action="Index" asp-controller="Home" asp-area=""><strong>PAN</strong></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link navbar-text-color" asp-action="Index" asp-controller="Home" asp-area="">Ana Sayfa</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link navbar-text-color" asp-action="Login" asp-controller="Account" asp-area=""><i class="fa-solid fa-right-to-bracket me-1"></i>Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link navbar-text-color" asp-action="SignUp" asp-controller="Account" asp-area=""><i class="fa-solid fa-user-plus me-1"></i>SignUp</a>
+            </li> 
+        </ul>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - WebProje2023 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
