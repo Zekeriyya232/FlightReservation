@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using FlightReservation.Entity;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebProje2023.Entity
@@ -14,13 +15,13 @@ namespace WebProje2023.Entity
 
 		[Required, StringLength(100)]
 		public string sehirVaris { get; set; }
-
-		[Required, StringLength(100)]
+		 
+		 [Required, StringLength(100)]
 		public string havalimaniKalkis { get; set; }
 
 		[Required, StringLength(100)]
 		public string havalimaniVaris { get; set; }
-
+		 
 		[Required]
 		public int biletFiyat { get; set; }
 
@@ -34,8 +35,10 @@ namespace WebProje2023.Entity
 		public string ucakModel { get; set; }
 
 		[Required]
-		public TimeOnly kalkisSaat { get; set; }
+		public TimeSpan kalkisSaat { get; set; }
 		[Required]
-		public TimeOnly varisSaat { get; set; }
+		public TimeSpan varisSaat { get; set; }
+
+
 	}
 }

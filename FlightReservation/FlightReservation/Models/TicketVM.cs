@@ -1,4 +1,6 @@
-﻿namespace WebProje2023.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace WebProje2023.Models
 {
 	public class TicketVM
 	{
@@ -12,8 +14,14 @@
 		public string ucakModel { get; set; }
 		public string koltukNo { get; set; }
 
-		public TimeOnly saatKalkis { get; set; }
-		public TimeOnly saatVaris { get; set; }
+		[Required]
+		public int biletFiyat { get; set; }
+
+		[Required]
+		public DateTime tarihKalkis { get; set; }
+
+		public TimeSpan saatKalkis { get; set; }
+		public TimeSpan saatVaris { get; set; }
 
 		public int kullaniciId { get; set; }
 

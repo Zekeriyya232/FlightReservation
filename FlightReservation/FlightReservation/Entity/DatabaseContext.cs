@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FlightReservation.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebProje2023.Entity
 {
@@ -12,5 +13,8 @@ namespace WebProje2023.Entity
 		public DbSet<RoutesDB> Routes { get; set; }
 
 		public DbSet<TicketDB> Ticket { get; set; }
+		public DbSet<AirportDB> Airports { get; set; }
+
+
 	}
 }

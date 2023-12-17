@@ -1,5 +1,48 @@
-﻿@{
+﻿@model SelectRouteVM
+@{
     ViewData["Title"] = "Home Page";
 }
 
-bla bla z
+<div class="row justify-content-between">
+    <form asp-action="Index">
+        <div>
+            <span asp-validation-for="havalimaniKalkis" class="form-label"></span>
+            <select asp-for="havalimaniKalkis" class="form-label col-4">
+                <option value="">Kalkış Havalimanı Seçiniz</option>
+                @foreach (var item in (List<string>)ViewBag.airportList)
+                {
+                    <option value="@item">@item</option>
+                }
+            </select>
+        </div>
+
+        <div>
+            <span asp-validation-for="havalimaniVaris" class="form-label"></span>
+            <select asp-for="havalimaniVaris" class="form-label col-4">
+                <option value="">Varış Havalimanı Seçiniz</option>
+                @foreach (var item in (List<string>)ViewBag.airportList)
+                {
+                    <option value="@item">@item</option>
+                }
+            </select>
+
+        </div>
+
+        <div class="form-outline mb-2 col-4">
+            <span asp-validation-for="tarih" class="text-warning small"></span>
+            <input asp-for="tarih" type="date" class="form-control" />
+            <label class="form-label" asp-for="tarih">Kalkış Tarihi</label>
+
+        </div>
+
+        <div class="text-center pt-1 mb-5 pb-1">
+            <button class="btn btn-primary col-12 gradient-custom-2 mb-3" type="submit">
+                <i class="fa-solid fa-magnifying-glass fa-bounce"></i> Uçuş Ara
+            </button>
+            <br />
+        </div>
+    </form>
+
+   
+ 
+</div>

@@ -25,11 +25,19 @@ namespace WebProje2023.Entity
 		public string koltukNo { get; set; }
 
 		[Required]
-		public TimeOnly saatKalkis { get; set; }
+		[DataType(DataType.Date)]
+		[Column(TypeName = "Date")]
+		public DateTime tarihKalkis { get; set; }
+
 		[Required]
-		public TimeOnly saatVaris { get; set; }
+		public TimeSpan saatKalkis { get; set; }
+		[Required]
+		public TimeSpan saatVaris { get; set; }
 
 		[Required]
 		public int kullaniciId { get; set; }
+
+		[Required]
+		public int biletFiyat { get; set; }
 	}
 }

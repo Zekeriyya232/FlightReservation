@@ -19,12 +19,35 @@
             <li class="nav-item">
                 <a class="nav-link navbar-text-color" asp-action="Index" asp-controller="Home" asp-area="">Ana Sayfa</a>
             </li>
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                if (User.IsInRole("admin"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link active navbar-text-color" asp-area="" asp-controller="Admin" asp-action="Index">Yönetici</a>
+                    </li>                
+                }
+
+                <li class="nav-item">
+                    <a class="nav-link navbar-text-color" asp-action="Profile" asp-controller="Account" asp-area=""><i class="fa-regular fa-user"></i> @User.FindFirst("KullaniciAdi").Value.ToUpper()</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navbar-text-color" asp-action="Logout" asp-controller="Account" asp-area=""><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a>
+                </li>
+
+            }
+            else{
+
             <li class="nav-item">
-                <a class="nav-link navbar-text-color" asp-action="Login" asp-controller="Account" asp-area=""><i class="fa-solid fa-right-to-bracket me-1"></i>Login</a>
+                <a class="nav-link navbar-text-color" asp-action="Login" asp-controller="Account" asp-area=""><i class="fa-solid fa-right-to-bracket"></i>Login</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link navbar-text-color" asp-action="SignUp" asp-controller="Account" asp-area=""><i class="fa-solid fa-user-plus me-1"></i>SignUp</a>
-            </li> 
+            </li>
+            }
+
+
         </ul>
     </header>
     <div class="container">

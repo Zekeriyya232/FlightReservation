@@ -154,7 +154,65 @@ namespace WebProje2023.Controllers
 
 		}
 
-		public IActionResult Logout()
+		public IActionResult ProfileEdit(int Id)
+		{
+            string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            int intId = Convert.ToInt32(id);
+
+            ViewBag.kullaniciId = intId;
+
+            KullaniciDB kullanici = _databaseContex.Kullanici.Find(intId);
+            ProfileEditVM kullaniciProfil = new ProfileEditVM();
+            kullaniciProfil.kullaniciAdi = kullanici.kullaniciAdi;
+            kullaniciProfil.kullaniciSoyadi = kullanici.KullaniciSoyadi;
+            kullaniciProfil.kullaniciEmail = kullanici.kullaniciEmail;
+            kullaniciProfil.kullaniciDogum = kullanici.kullaniciDogum;
+            kullaniciProfil.Phone = kullanici.Phone;
+
+            return View(kullaniciProfil);
+        }
+
+		[HttpPost]
+        public IActionResult ProfileEdit(int Id,ProfileEditVM profileEditVM)
+		{
+			if (ModelState.IsValid)
+			{
+                string md5Crypto = _configuration.GetValue<string>("AppSettings:MD5Crypto");
+                string cryptoPassword = profileEditVM.KullaniciSifre + md5Crypto;
+                string hashedPassword = cryptoPassword.MD5();
+
+                KullaniciDB kullanici = new()
+                {
+                    kullaniciAdi = profileEditVM.kullaniciAdi,
+                    KullaniciSoyadi = profileEditVM.kullaniciSoyadi,
+                    kullaniciSifre = hashedPassword,
+                    kullaniciEmail = profileEditVM.kullaniciEmail,
+                    kullaniciDogum = profileEditVM.kullaniciDogum,
+                    Phone = profileEditVM.Phone,				
+					
+                };
+
+				_databaseContex.SaveChanges();
+
+				ProfileVM profile = new()
+				{
+
+					kullaniciAdi = kullanici.kullaniciAdi,
+					kullaniciSoyadi = kullanici.KullaniciSoyadi,
+					kullaniciEmail = kullanici.kullaniciEmail,
+					KayitTarih = kullanici.KayitTarih,
+					Phone = kullanici.Phone,
+					kullaniciDogum=kullanici.kullaniciDogum
+				};
+
+				return View("Profile",profile);
+            }
+			return View(profileEditVM);
+		}
+
+
+
+        public IActionResult Logout()
 		{
 			HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 			return RedirectToAction("Index", "Home");

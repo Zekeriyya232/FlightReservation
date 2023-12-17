@@ -1,5 +1,4 @@
 ﻿using FlightReservation.Entity;
-using FlightReservation.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
@@ -30,20 +29,21 @@ namespace WebProje2023.Controllers
 		public IActionResult Index()
 		{
 			List<AirportDB> airports = _databaseContex.Airports.ToList();
-			List<AirportVM> model = new List<AirportVM>();
+		
+            ViewBag.airportList = new List<string>();
+			ViewBag.airportKisaltma=new List<string>();
 
-			foreach (AirportDB item in airports)
+            foreach (AirportDB item in airports)
 			{
-				model.Add(new AirportVM
-				{
-					havalimaniAdi = item.havalimaniAdi,
-					havalimaniKisaltma=item.havalimaniKisaltma,
-				});
-			}
+                ViewBag.airportList.Add(item.havalimaniAdi);
+            }
 
-			ViewBag.airportList=model;
+            foreach (AirportDB item in airports)
+			{
+                ViewBag.airportKisaltma.Add(item.havalimaniKisaltma);
+            }
 
-			return View();
+            return View();
 		}
 		[HttpPost]
 		public IActionResult Index(SelectRouteVM model)
@@ -55,19 +55,19 @@ namespace WebProje2023.Controllers
 				{
 					List<RoutesVM> routesVM = new List<RoutesVM>();
 					foreach(RoutesDB item in routes) {
-                        routesVM.Add(new RoutesVM
+						routesVM.Add(new RoutesVM
 						{
 							Id = item.Id,
-                            havalimaniKalkis = item.havalimaniKalkis,
-                            havalimaniVaris = item.havalimaniVaris,
-                            sehirKalkis = item.sehirKalkis,
-                            sehirVaris = item.sehirVaris,
-                            tarihKalkis = item.tarihKalkis,
-                            kalkisSaat =item.kalkisSaat,
-                            varisSaat = item.varisSaat,
-                            biletFiyat = item.biletFiyat,
-                            ucakModel = item.ucakModel,
-                        });
+							havalimaniKalkis = item.havalimaniKalkis,
+							havalimaniVaris = item.havalimaniVaris,
+							sehirKalkis = item.sehirKalkis,
+							sehirVaris = item.sehirVaris,
+							tarihKalkis = item.tarihKalkis,
+							kalkisSaat =item.kalkisSaat,
+							varisSaat = item.varisSaat,
+							biletFiyat = item.biletFiyat,
+							ucakModel = item.ucakModel,
+						});
 					}
 					return View("SelectTicket", routesVM);
 				}
@@ -84,37 +84,38 @@ namespace WebProje2023.Controllers
 		
 		public IActionResult SelectSeat(int Id)
 		{
-            RoutesDB route = _databaseContex.Routes.Find(Id);
+			RoutesDB route = _databaseContex.Routes.Find(Id);
 			PlaneDB plane = _databaseContex.Plane.SingleOrDefault(x => x.ucakModel.ToUpper() ==route.ucakModel.ToUpper());
 			ViewBag.koltukSayisi = plane.koltukSayisi;
 
 			return View();
 
-         
+		 
 
-        }
+		}
 		[HttpPost]
 		public IActionResult SelectSeat(int Id , string koltukNumarasi)
 		{
-            RoutesDB route = _databaseContex.Routes.Find(Id);
-            string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            int intId = Convert.ToInt32(id);
-            KullaniciDB kullanici = _databaseContex.Kullanici.Find(intId);
-            TicketDB ticket = new()
-            {
-                kullaniciId = kullanici.Id,
-                havalimaniKalkis = route.havalimaniKalkis,
-                havalimaniVaris = route.havalimaniVaris,
-                sehirKalkis = route.sehirKalkis,
-                sehirVaris = route.sehirVaris,
-                saatKalkis = route.kalkisSaat,
-                saatVaris = route.varisSaat,
-                yolcuAdi = kullanici.kullaniciAdi,
-                yolcuSoyadi = kullanici.KullaniciSoyadi,
-                ucakModel = route.ucakModel,
-                koltukNo = koltukNumarasi,
+			RoutesDB route = _databaseContex.Routes.Find(Id);
+			string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+			int intId = Convert.ToInt32(id);
+			KullaniciDB kullanici = _databaseContex.Kullanici.Find(intId);
+			TicketDB ticket = new()
+			{
+				kullaniciId = kullanici.Id,
+				havalimaniKalkis = route.havalimaniKalkis,
+				havalimaniVaris = route.havalimaniVaris,
+				sehirKalkis = route.sehirKalkis,
+				sehirVaris = route.sehirVaris,
+				saatKalkis = route.kalkisSaat,
+				saatVaris = route.varisSaat,
+				yolcuAdi = kullanici.kullaniciAdi,
+				yolcuSoyadi = kullanici.KullaniciSoyadi,
+				ucakModel = route.ucakModel,
+				koltukNo = koltukNumarasi,
 
-            };
+			};
+			_databaseContex.Ticket.Add(ticket);
 			_databaseContex.SaveChanges();
 
 			TicketVM ticketVM = new()
@@ -133,7 +134,7 @@ namespace WebProje2023.Controllers
 			};
 
 			return View("ShowTicket", ticketVM);
-        }
+		}
 
 		public IActionResult ShowTicket(TicketVM ticketVM) {
 

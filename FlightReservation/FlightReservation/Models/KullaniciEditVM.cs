@@ -26,9 +26,6 @@ namespace WebProje2023.Models
 
 		public bool Locked { get; set; } = false;
 
-		[Required, StringLength(100)]
-		public string kullaniciSifre { get; set; }
-
 
 		[Required(ErrorMessage = "Email Adresinizi Giriniz")]
 		[StringLength(30)]

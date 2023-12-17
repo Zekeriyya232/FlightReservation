@@ -1,28 +1,27 @@
-﻿@model List<RoutesVM>
-@{
-
+﻿@{
+    ViewData["Title"] = "Admin Panel";
 }
 
-<div class="card">
-    <div class="card-header">
-        <strong>Uçuş Ara</strong>
+<div class="row">
+    
+    <div class="col-2">
+        <a asp-action="KullaniciGet" class="btn btn-info btn-sm text-white"><i class="fa-solid fa-list me-1"></i>Kullanıcı Listele</a>
     </div>
-    <div class="card-body">
-        <div>
-            <input list="guzergah">
-            <datalist id="guzergah">
-                @foreach(RoutesVM routes in Model)
-                {
-                    <option value="@routes.havalimaniKalkis"/>
-                }  
 
-            </datalist>
-            @for(int i = 0; i < Model.Count; i++)
-            {
-                
-            }
-        </div>
-       
-
+    <div class="col-2">
+        <a asp-action="RouteGet" class="btn btn-info btn-sm text-white"><i class="fa-solid fa-list me-1"></i>Rota Listele</a>
     </div>
+    
+    <div class="col-2">
+        <a asp-action="PlaneGet" class="btn btn-info btn-sm text-white"><i class="fa-solid fa-list me-1"></i>Uçak Listele</a>
+    </div>
+
+    <div class="col-2">
+        <a asp-action="TicketGet" class="btn btn-info btn-sm text-white"><i class="fa-solid fa-list me-1"></i>Bilet Listele</a>
+    </div>
+
+    <div class="col-2">
+        <a asp-action="AirportGet" class="btn btn-info btn-sm text-white"><i class="fa-solid fa-list me-1"></i>Havalimanı Listele</a>
+    </div>
+
 </div>

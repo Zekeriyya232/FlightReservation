@@ -1,10 +1,10 @@
 ﻿using FlightReservation.Entity;
-using FlightReservation.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using NETCore.Encrypt.Extensions;
+using System.Net.Sockets;
 using WebProje2023.Entity;
 using WebProje2023.Models;
 
@@ -47,6 +47,7 @@ namespace WebProje2023.Controllers
 					KayitTarih = item.KayitTarih,
 					Locked = item.Locked,
 					Phone = item.Phone,
+					kullaniciDogum=item.kullaniciDogum
 				});
 			}
 			//admin sayfasında kullanıcıları listelemek için kullan 
@@ -61,31 +62,37 @@ namespace WebProje2023.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult KullaniciCreate(SignUpVm signUpVm)
+		public IActionResult KullaniciCreate(KullaniciCreateVM kullaniciCreateVM)
 		{
 			if (ModelState.IsValid)
 			{
 				string md5Crypto = _configuration.GetValue<string>("AppSettings:MD5Crypto");
-				string cryptoPassword = signUpVm.KullaniciSifre + md5Crypto;
+				string cryptoPassword = kullaniciCreateVM.KullaniciSifre + md5Crypto;
 				string hashedPassword = cryptoPassword.MD5();
 
 				KullaniciDB kullanici = new()
 				{
-					kullaniciAdi = signUpVm.kullaniciAdi,
-					KullaniciSoyadi = signUpVm.kullaniciSoyadi,
+					kullaniciAdi = kullaniciCreateVM.kullaniciAdi,
+					KullaniciSoyadi = kullaniciCreateVM.kullaniciSoyadi,
 					kullaniciSifre = hashedPassword,
-					kullaniciEmail = signUpVm.kullaniciEmail,
-					kullaniciDogum = signUpVm.kullaniciDogum,
-					Phone = signUpVm.Phone
+					kullaniciEmail = kullaniciCreateVM.kullaniciEmail,
+					kullaniciDogum = kullaniciCreateVM.kullaniciDogum,
+					Phone = kullaniciCreateVM.Phone,
+					Role = kullaniciCreateVM.Role,
+					Locked= kullaniciCreateVM.Locked,
+					KayitTarih=kullaniciCreateVM.KayitTarih
 				};
 
 				_databaseContex.Kullanici.Add(kullanici);
 				_databaseContex.SaveChanges();
-				return View("KullaniciGet");
+
+				
+
+				return RedirectToAction("KullaniciGet");
 			}
 			else
 			{
-				return View(signUpVm);
+				return View(kullaniciCreateVM);
 			}
 
 		}
@@ -122,30 +129,10 @@ namespace WebProje2023.Controllers
 
 				_databaseContex.SaveChanges();
 
-
-				List<KullaniciDB> kullanicilar = _databaseContex.Kullanici.ToList();
-				List<KullaniciVM> model2 = new List<KullaniciVM>();
-
-				// _databaseContex.Kullanici.Select(x=>new KullaniciVM { 
-				//   Id=x.Id,kullaniciAdi=x.kullaniciAdi,KullaniciSoyadi=x.KullaniciSoyadi,kullaniciEmail=x.kullaniciEmail})
-
-				foreach (KullaniciDB item in kullanicilar)
-				{
-					model2.Add(new KullaniciVM
-					{
-						Id = item.Id,
-						kullaniciAdi = item.kullaniciAdi,
-						KullaniciSoyadi = item.KullaniciSoyadi,
-						kullaniciEmail = item.kullaniciEmail,
-						Role = item.Role,
-						KayitTarih = item.KayitTarih,
-						Locked = item.Locked,
-					});
-				}
-				//admin sayfasında kullanıcıları listelemek için kullan 
+				
 
 
-				return View("KullaniciGet", model2);
+				return RedirectToAction("KullaniciGet"); 
 
 			}
 			return View(kullaniciEditVM);
@@ -161,27 +148,8 @@ namespace WebProje2023.Controllers
 				_databaseContex.Kullanici.Remove(kullanici);
 				_databaseContex.SaveChanges();
 
-				List<KullaniciDB> kullanicilar = _databaseContex.Kullanici.ToList();
-				List<KullaniciVM> model2 = new List<KullaniciVM>();
-
-				// _databaseContex.Kullanici.Select(x=>new KullaniciVM { 
-				//   Id=x.Id,kullaniciAdi=x.kullaniciAdi,KullaniciSoyadi=x.KullaniciSoyadi,kullaniciEmail=x.kullaniciEmail})
-
-				foreach (KullaniciDB item in kullanicilar)
-				{
-					model2.Add(new KullaniciVM
-					{
-						Id = item.Id,
-						kullaniciAdi = item.kullaniciAdi,
-						KullaniciSoyadi = item.KullaniciSoyadi,
-						kullaniciEmail = item.kullaniciEmail,
-						Role = item.Role,
-						KayitTarih = item.KayitTarih,
-						Locked = item.Locked,
-					});
-				}
-				//admin sayfasında kullanıcıları listelemek için kullan 
-				return View("KullaniciGet", model2);
+				
+				return RedirectToAction("KullaniciGet");
 
 			}
 			return NotFound();
@@ -216,7 +184,7 @@ namespace WebProje2023.Controllers
 		public IActionResult RouteEdit(int Id)
 		{
 			RoutesDB routes = _databaseContex.Routes.Find(Id);
-			RoutesVM routesVM = new();
+			RoutesEditVM routesVM = new();
 
 			routesVM.havalimaniKalkis = routes.havalimaniKalkis;
 			routesVM.havalimaniVaris = routes.havalimaniVaris;
@@ -249,27 +217,9 @@ namespace WebProje2023.Controllers
 
 				_databaseContex.SaveChanges();
 
-				List<RoutesDB> routeList = _databaseContex.Routes.ToList();
-				List<RoutesVM> model2 = new List<RoutesVM>();
-
-				foreach (RoutesDB item in routeList)
-				{
-					model2.Add(new RoutesVM
-					{
-						Id = item.Id,
-						havalimaniKalkis = item.havalimaniKalkis,
-						havalimaniVaris = item.havalimaniVaris,
-						sehirKalkis = item.sehirKalkis,
-						sehirVaris = item.sehirVaris,
-						tarihKalkis = item.tarihKalkis,
-						kalkisSaat = item.kalkisSaat,
-						varisSaat = item.varisSaat,
-						biletFiyat = item.biletFiyat,
-						ucakModel = item.ucakModel,
-					});
-				}
-				return View("RoutesGet", model2);
-			}
+				
+				return RedirectToAction("RouteGet");  //bu sayfaya model göndermeye gerek yok
+            }
 			return View(routesEditVM);
 		}
 
@@ -282,29 +232,8 @@ namespace WebProje2023.Controllers
 				_databaseContex.Routes.Remove(routes);
 				_databaseContex.SaveChanges();
 
-				List<RoutesDB> routeList = _databaseContex.Routes.ToList();
-				List<RoutesVM> model2 = new List<RoutesVM>();
-
-				// _databaseContex.Kullanici.Select(x=>new KullaniciVM { 
-				//   Id=x.Id,kullaniciAdi=x.kullaniciAdi,KullaniciSoyadi=x.KullaniciSoyadi,kullaniciEmail=x.kullaniciEmail})
-
-				foreach (RoutesDB item in routeList)
-				{
-					model2.Add(new RoutesVM
-					{
-						Id = item.Id,
-						havalimaniKalkis = item.havalimaniKalkis,
-						havalimaniVaris = item.havalimaniVaris,
-						sehirKalkis = item.sehirKalkis,
-						sehirVaris = item.sehirVaris,
-						tarihKalkis = item.tarihKalkis,
-						kalkisSaat = item.kalkisSaat,
-						varisSaat = item.varisSaat,
-						biletFiyat = item.biletFiyat,
-						ucakModel = item.ucakModel,
-					});
-				}
-				return View("RoutesGet", model2);
+				
+				return RedirectToAction("RouteGet");
 
 			}
 			return NotFound();
@@ -320,8 +249,6 @@ namespace WebProje2023.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-
-
 				RoutesDB routes = new()
 				{
 
@@ -338,7 +265,7 @@ namespace WebProje2023.Controllers
 
 				_databaseContex.Routes.Add(routes);
 				_databaseContex.SaveChanges();
-				return View("RoutesGet");
+				return RedirectToAction("RouteGet");
 			}
 			else
 			{
@@ -382,7 +309,7 @@ namespace WebProje2023.Controllers
 
 				_databaseContex.Plane.Add(plane);
 				_databaseContex.SaveChanges();
-				return View("PlaneGet");
+				return RedirectToAction("PlaneGet");
 			}
 			else
 			{
@@ -400,22 +327,8 @@ namespace WebProje2023.Controllers
 				_databaseContex.Plane.Remove(plane);
 				_databaseContex.SaveChanges();
 
-				List<PlaneDB> planeList = _databaseContex.Plane.ToList();
-				List<PlaneVM> model = new();
-
-				// _databaseContex.Kullanici.Select(x=>new KullaniciVM { 
-				//   Id=x.Id,kullaniciAdi=x.kullaniciAdi,KullaniciSoyadi=x.KullaniciSoyadi,kullaniciEmail=x.kullaniciEmail})
-
-				foreach (PlaneDB item in planeList)
-				{
-					model.Add(new PlaneVM
-					{
-						Id = item.Id,
-						ucakModel = item.ucakModel,
-						koltukSayisi = item.koltukSayisi,
-					});
-				}
-				return View("PlaneGet", model);
+				
+				return RedirectToAction("PlaneGet");
 
 			}
 			return NotFound();
@@ -444,18 +357,8 @@ namespace WebProje2023.Controllers
 
 				_databaseContex.SaveChanges();
 
-				List<PlaneDB> planeList = _databaseContex.Plane.ToList();
-				List<PlaneVM> planes = new List<PlaneVM>();
-				foreach (PlaneDB item in planeList)
-				{
-					planes.Add(new PlaneVM
-					{
-						Id = item.Id,
-						ucakModel = item.ucakModel,
-						koltukSayisi = item.koltukSayisi,
-					});
-				}
-				return View("PlaneGet", planes);
+				
+				return RedirectToAction("PlaneGet");
 
 			}
 			return View(planeEditVM);
@@ -485,6 +388,10 @@ namespace WebProje2023.Controllers
 					yolcuSoyadi = item.yolcuSoyadi,
 					ucakModel = item.ucakModel,
 					koltukNo = item.koltukNo,
+					tarihKalkis= item.tarihKalkis,
+					biletFiyat = item.biletFiyat,
+					
+
 				});
 			}
 			//admin sayfasında kullanıcıları listelemek için kullan 
@@ -521,10 +428,13 @@ namespace WebProje2023.Controllers
 					yolcuSoyadi = ticket.yolcuSoyadi,
 					ucakModel = ticket.ucakModel,
 					koltukNo = ticket.koltukNo,
+					tarihKalkis= ticket.tarihKalkis,
+					biletFiyat = ticket.biletFiyat,
 				};
 				_databaseContex.Ticket.Add(ticketDB);
 				_databaseContex.SaveChanges();
-				return View("TicketGet");
+				
+				return RedirectToAction("TicketGet");
 			}
 			else { return View(ticket); }
 
@@ -546,6 +456,8 @@ namespace WebProje2023.Controllers
 				yolcuSoyadi = ticket.yolcuSoyadi,
 				ucakModel = ticket.ucakModel,
 				koltukNo = ticket.koltukNo,
+				tarihKalkis= ticket.tarihKalkis,
+				biletFiyat = ticket.biletFiyat,
 
 			};
 			return View(ticketEdit);
@@ -568,31 +480,13 @@ namespace WebProje2023.Controllers
 				ticketDb.yolcuSoyadi = ticket.yolcuSoyadi;
 				ticketDb.ucakModel = ticket.ucakModel;
 				ticketDb.koltukNo = ticket.koltukNo;
+				ticketDb.tarihKalkis = ticket.tarihKalkis;
+				ticketDb.biletFiyat = ticket.biletFiyat;
 
 				_databaseContex.SaveChanges();
 
-				List<TicketDB> tickets = _databaseContex.Ticket.ToList();
-				List<TicketVM> model = new List<TicketVM>();
-
-				foreach (TicketDB item in tickets)
-				{
-					model.Add(new TicketVM
-					{
-						Id = item.Id,
-						kullaniciId = item.kullaniciId,
-						havalimaniKalkis = item.havalimaniKalkis,
-						havalimaniVaris = item.havalimaniVaris,
-						sehirKalkis = item.sehirKalkis,
-						sehirVaris = item.sehirVaris,
-						saatKalkis = item.saatKalkis,
-						saatVaris = item.saatVaris,
-						yolcuAdi = item.yolcuAdi,
-						yolcuSoyadi = item.yolcuSoyadi,
-						ucakModel = item.ucakModel,
-						koltukNo = item.koltukNo,
-					});
-				}
-				return View("TicketGet", model);
+				
+				return RedirectToAction("TicketGet");
 			}
 			return View(ticket);
 		}
@@ -606,28 +500,8 @@ namespace WebProje2023.Controllers
 				_databaseContex.Ticket.Remove(ticket);
 				_databaseContex.SaveChanges();
 
-				List<TicketDB> ticketList = _databaseContex.Ticket.ToList();
-				List<TicketVM> ticketVM = new List<TicketVM>();
-
-				foreach (TicketDB item in ticketList)
-				{
-					ticketVM.Add(new TicketVM
-					{
-						Id = item.Id,
-						kullaniciId = item.kullaniciId,
-						havalimaniKalkis = item.havalimaniKalkis,
-						havalimaniVaris = item.havalimaniVaris,
-						sehirKalkis = item.sehirKalkis,
-						sehirVaris = item.sehirVaris,
-						saatKalkis = item.saatKalkis,
-						saatVaris = item.saatVaris,
-						yolcuAdi = item.yolcuAdi,
-						yolcuSoyadi = item.yolcuSoyadi,
-						ucakModel = item.ucakModel,
-						koltukNo = item.koltukNo,
-					});
-				}
-				return View("TicketGet", ticketVM);
+				
+				return RedirectToAction("TicketGet");
 			}
 			return NotFound();
 		}
@@ -654,7 +528,77 @@ namespace WebProje2023.Controllers
 
 		public IActionResult AirportCreate()
 		{
-			
+			return View();
 		}
-	}
+
+		[HttpPost]
+        public IActionResult AirportCreate(AirportVM model)
+		{
+			if (ModelState.IsValid)
+			{
+				AirportDB airport = new()
+				{
+					havalimaniAdi = model.havalimaniAdi,
+					sehir = model.sehir,
+					ulke = model.ulke,
+					havalimaniKisaltma = model.havalimaniKisaltma,
+				};
+				_databaseContex.Airports.Add(airport);
+				_databaseContex.SaveChanges();
+
+				return RedirectToAction("AirportGet");
+			}
+
+			return View(model);
+		}
+
+		public IActionResult AirportEdit(int Id)
+		{
+			AirportDB airport = _databaseContex.Airports.Find(Id);
+			AirportEditVM model = new()
+			{
+				havalimaniAdi = airport.havalimaniAdi,
+				havalimaniKisaltma = airport.havalimaniKisaltma,
+				sehir = airport.sehir,
+				ulke = airport.ulke,
+			};
+
+			return View(model);
+		}
+
+		[HttpPost]
+		public IActionResult AirportEdit(int Id ,AirportEditVM model)
+		{
+			if (ModelState.IsValid)
+			{
+				AirportDB airport = _databaseContex.Airports.Find(Id);
+				airport.havalimaniAdi=model.havalimaniAdi;
+				airport.havalimaniKisaltma = model.havalimaniKisaltma;
+				airport.sehir = model.sehir;
+				airport.ulke = model.ulke;
+
+				_databaseContex.SaveChanges();
+
+				return RedirectToAction("AirportGet");
+			}
+			return View(model);
+		}
+
+		public IActionResult AirportDelete(int Id)
+		{
+			AirportDB airport = _databaseContex.Airports.Find(Id);
+
+			if(airport != null)
+			{
+                _databaseContex.Airports.Remove(airport);
+                _databaseContex.SaveChanges();
+
+				return RedirectToAction("AirportGet");
+            }
+
+			return NotFound();				
+		}
+
+
+    }
 }

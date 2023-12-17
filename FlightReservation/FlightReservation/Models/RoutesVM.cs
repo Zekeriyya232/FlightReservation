@@ -31,9 +31,9 @@ namespace WebProje2023.Models
 		public string ucakModel { get; set; }
 
 		[Required]
-		public TimeOnly kalkisSaat { get; set; }
+		public TimeSpan kalkisSaat { get; set; }
 		[Required]
-		public TimeOnly varisSaat { get; set; }
+		public TimeSpan varisSaat { get; set; }
 
 	}
 }

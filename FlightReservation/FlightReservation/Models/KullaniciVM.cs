@@ -12,6 +12,8 @@
 
 		public bool Locked { get; set; } = false;
 
+		public DateTime kullaniciDogum { get; set; }
+
 
 		public DateTime KayitTarih { get; set; } = DateTime.UtcNow; //düzelt
 

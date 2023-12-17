@@ -20,16 +20,40 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/VStudio/FlightReservation/FlightReservation/Views/Account/MyTickets.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxNeVRpY2tldHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/VStudio/FlightReservation/FlightReservation/Views/Account/Profile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxQcm9maWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/VStudio/FlightReservation/FlightReservation/Views/Account/ProfileEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxQcm9maWxlRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/VStudio/FlightReservation/FlightReservation/Views/Account/SignUp.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxTaWduVXAuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/VStudio/FlightReservation/FlightReservation/Views/Admin/AirportCreate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWlycG9ydENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/VStudio/FlightReservation/FlightReservation/Views/Admin/AirportEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWlycG9ydEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/VStudio/FlightReservation/FlightReservation/Views/Admin/AirportGet.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWlycG9ydEdldC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/VStudio/FlightReservation/FlightReservation/Views/Admin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/VStudio/FlightReservation/FlightReservation/Views/Admin/KullaniciCreate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cS3VsbGFuaWNpQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/VStudio/FlightReservation/FlightReservation/Views/Admin/KullaniciEdit.cshtml]
@@ -38,6 +62,42 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/VStudio/FlightReservation/FlightReservation/Views/Admin/KullaniciGet.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cS3VsbGFuaWNpR2V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/VStudio/FlightReservation/FlightReservation/Views/Admin/PlaneCreate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUGxhbmVDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/VStudio/FlightReservation/FlightReservation/Views/Admin/PlaneEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUGxhbmVFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/VStudio/FlightReservation/FlightReservation/Views/Admin/PlaneGet.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUGxhbmVHZXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/VStudio/FlightReservation/FlightReservation/Views/Admin/RouteCreate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUm91dGVDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/VStudio/FlightReservation/FlightReservation/Views/Admin/RouteEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUm91dGVFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/VStudio/FlightReservation/FlightReservation/Views/Admin/RouteGet.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUm91dGVHZXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/VStudio/FlightReservation/FlightReservation/Views/Admin/TicketCreate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVGlja2V0Q3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/VStudio/FlightReservation/FlightReservation/Views/Admin/TicketEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVGlja2V0RWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/VStudio/FlightReservation/FlightReservation/Views/Admin/TicketGet.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVGlja2V0R2V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/VStudio/FlightReservation/FlightReservation/Views/Home/AccessDenied.cshtml]
@@ -50,6 +110,18 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/VStudio/FlightReservation/FlightReservation/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/VStudio/FlightReservation/FlightReservation/Views/Home/SelectSeat.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTZWxlY3RTZWF0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/VStudio/FlightReservation/FlightReservation/Views/Home/SelectTicket.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTZWxlY3RUaWNrZXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/VStudio/FlightReservation/FlightReservation/Views/Home/ShowTicket.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTaG93VGlja2V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/VStudio/FlightReservation/FlightReservation/Views/Shared/Error.cshtml]

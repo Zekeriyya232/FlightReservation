@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace FlightReservation.Models
+namespace WebProje2023.Models
 {
 	public class SelectRouteVM
 	{

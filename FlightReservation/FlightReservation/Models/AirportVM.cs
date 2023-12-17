@@ -1,4 +1,4 @@
-﻿namespace FlightReservation.Models
+﻿namespace WebProje2023.Models
 {
 	public class AirportVM
 	{
