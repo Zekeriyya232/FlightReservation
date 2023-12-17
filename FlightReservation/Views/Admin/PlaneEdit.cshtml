@@ -1,0 +1,42 @@
+﻿@model PlaneEditVM
+@{
+	ViewData["Title"] = "Uçak Düzenle";
+}
+
+<div class="row">
+	<div class="col-4 offset-4">
+		<h1 class="display-4 border-bottom text-center pb-2">@ViewData["Title"]</h1>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-4 offset-4">
+		<form asp-action="PlaneEdit">
+			<div asp-validation-summary="ModelOnly" class="text-warning small"></div>
+
+			<div class="row justify-content-between">
+				<div class="form-outline col-6 mb-2">
+					<span asp-validation-for="ucakModel" class="text-warning small"></span>
+					<input asp-for=" ucakModel" type="text" class="form-control"
+						   placeholder="" />
+					<label class="form-label" asp-for=" ucakModel">Uçak Modeli</label>
+
+				</div>
+				<div class="form-outline col-6 mb-2">
+					<span asp-validation-for="koltukSayisi" class="text-warning small"></span>
+					<input asp-for="koltukSayisi" type="number" class="form-control"
+						   placeholder="" />
+					<label class="form-label" asp-for="koltukSayisi">Koltuk Sayısı</label>
+
+				</div>
+			</div>
+
+			<div class="text-center pt-1 mb-5 pb-1">
+				<button class="btn btn-primary col-12 gradient-custom-2 mb-3" type="submit">
+					<i class="fa-solid fa-save me-2"></i> Save
+				</button>
+				<br />
+			</div>
+		</form>
+	</div>
+</div>

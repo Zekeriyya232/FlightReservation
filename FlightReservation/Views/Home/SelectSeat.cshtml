@@ -1,0 +1,110 @@
+﻿@{
+    char koltukHarf = 'A';
+    int satır = 0;
+    int koltukSayisi = ViewBag.koltukSayisi;
+}
+<link href="~/css/plane.css" rel="stylesheet" />
+<li class="seat">
+    W
+    <input type="checkbox" id="1A" />
+    <label for="1A">1A</label>
+</li>
+<div class="plane">
+    <div class="cockpit">
+        <h1>PAN Seat Selection</h1>
+    </div>
+    <div class="exit exit--front fuselage">
+    </div>
+    <ol class="cabin fuselage">
+        @if (koltukSayisi % 6 == 0)
+        {
+            @for (int i = 1; i < koltukSayisi / 6; i++)
+            {
+
+
+                <li class="row row--@i">
+
+                    <ol class="seats" type="@koltukHarf+(i-1)">
+                        <li class="seat">
+                            <input type="checkbox" id="@i A" />
+                            <label for="@i A">@i A</label>
+                        </li>
+                        <li class="seat">
+                            <input type="checkbox" id="@i B" />
+                            <label for="@i B">@i B</label>
+                        </li>
+                        <li class="seat">
+                            <input type="checkbox" id="@i C" />
+                            <label for="@i C">@i C</label>
+                        </li>
+                        <li class="seat">
+                            <input type="checkbox" id="@i D" />
+                            <label for="@i D">@i D</label>
+                        </li>
+                        <li class="seat">
+                            <input type="checkbox" id="@i E " />
+                            <label for="@i E">@i E</label>
+                        </li>
+                        <li class="seat">
+                            <input type="checkbox" id="@i F" />
+                            <label for="@i F">@i F</label>
+                        </li>
+                    </ol>
+                </li>
+            }
+        }
+        else
+        {
+            @for (int i = 1; i <= koltukSayisi / 6; i++)
+            {
+
+                <li class="row row--@(koltukSayisi/6+1)">
+
+                    <ol class="seats" type="@(koltukHarf+(i-1))">
+                        <li class="seat">
+                            <input type="checkbox" id="@i A" />
+                            <label for="@i A">@i A</label>
+                        </li>
+                        <li class="seat">
+                            <input type="checkbox" id="@i B" />
+                            <label for="@i B">@i B</label>
+                        </li>
+                        <li class="seat">
+                            <input type="checkbox" id="@i C" />
+                            <label for="@i C">@i C</label>
+                        </li>
+                        <li class="seat">
+                            <input type="checkbox" id="@i D" />
+                            <label for="@i D">@i D</label>
+                        </li>
+                        <li class="seat">
+                            <input type="checkbox" id="@i E " />
+                            <label for="@i E">@i E</label>
+                        </li>
+                        <li class="seat">
+                            <input type="checkbox" id="@i F" />
+                            <label for="@i F">@i F</label>
+                        </li>
+                    </ol>
+                </li>
+            }
+            <li class="row row--@(koltukSayisi/6+1)">
+
+                <ol class="seats" type="@koltukHarf+@(koltukSayisi/6+1)">
+                    @for (int i = 1; i <= koltukSayisi % 6; i++)
+                    {
+                        <li class="seat">
+                            <input type="checkbox" id="@(koltukSayisi/6+1) @(koltukHarf+(i-1))" />
+                            <label for="@(koltukSayisi/6+1) @(koltukHarf+(i-1))">@(koltukSayisi / 6 + 1) @Convert.ToChar(koltukHarf+(i-1))</label>
+                        </li>
+                    }
+
+                </ol>
+            </li>
+
+
+        }
+    </ol>
+    <div class="exit exit--back fuselage">
+    </div>
+</div>
