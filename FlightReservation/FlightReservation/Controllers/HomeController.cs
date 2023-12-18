@@ -48,10 +48,27 @@ namespace WebProje2023.Controllers
 		[HttpPost]
 		public IActionResult Index(SelectRouteVM model)
 		{
-			if (ModelState.IsValid)
+
+            List<AirportDB> airports = _databaseContex.Airports.ToList();
+
+            ViewBag.airportList = new List<string>();
+            ViewBag.airportKisaltma = new List<string>();
+
+            foreach (AirportDB item in airports)
+            {
+                ViewBag.airportList.Add(item.havalimaniAdi);
+            }
+
+            foreach (AirportDB item in airports)
+            {
+                ViewBag.airportKisaltma.Add(item.havalimaniKisaltma);
+            }
+
+            if (ModelState.IsValid)
 			{
-				List<RoutesDB> routes = _databaseContex.Routes.Where(x=> x.havalimaniKalkis ==model.havalimaniKalkis && x.havalimaniVaris==model.havalimaniVaris && x.tarihKalkis ==model.tarih).ToList();
-				if(routes.Any())
+				List<RoutesDB> routes = _databaseContex.Routes.Where(x=> x.havalimaniKalkis == model.havalimaniKalkis && x.havalimaniVaris == model.havalimaniVaris && x.tarihKalkis==model.tarih).ToList();
+
+                if (routes.Any())
 				{
 					List<RoutesVM> routesVM = new List<RoutesVM>();
 					foreach(RoutesDB item in routes) {
@@ -141,11 +158,6 @@ namespace WebProje2023.Controllers
 			return View(ticketVM);
 		}
 
-
-		public IActionResult Privacy()
-		{
-			return View();
-		}
 
 		public IActionResult AccessDenied()
 		{

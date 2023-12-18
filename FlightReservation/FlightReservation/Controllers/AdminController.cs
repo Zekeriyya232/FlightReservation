@@ -175,6 +175,8 @@ namespace WebProje2023.Controllers
 					biletFiyat = item.biletFiyat,
 					tarihKalkis = item.tarihKalkis,
 					ucakModel = item.ucakModel,
+					kalkisSaat=item.kalkisSaat,
+					varisSaat=item.varisSaat,
 				});
 			}
 			//admin sayfasında rotaları listelemek için
@@ -275,7 +277,7 @@ namespace WebProje2023.Controllers
 
 		public IActionResult PlaneGet()
 		{
-			List<PlaneDB> planes = new();
+			List<PlaneDB> planes = _databaseContex.Plane.ToList();
 			List<PlaneVM> model = new();
 
 			foreach (PlaneDB item in planes)

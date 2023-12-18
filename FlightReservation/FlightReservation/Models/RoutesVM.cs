@@ -25,7 +25,9 @@ namespace WebProje2023.Models
 		[Required]
 		public int biletFiyat { get; set; }
 		[Required]
-		public DateTime tarihKalkis { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime tarihKalkis { get; set; }
 		[Required]
 		[StringLength(50)]
 		public string ucakModel { get; set; }

@@ -8,7 +8,10 @@ namespace WebProje2023.Models
 		public string havalimaniKalkis {  get; set; }
 		[Required]
 		public string havalimaniVaris {  get; set; }
-		public DateTime tarih {  get; set; }
+
+		[Required]
+        [DataType(DataType.Date)]
+        public DateTime tarih {  get; set; }
 
 	}
 }

@@ -28,7 +28,9 @@ namespace WebProje2023.Entity
 		[Required, StringLength(100)]
 		public string kullaniciSifre { get; set; }
 		public bool Locked { get; set; } = false;
-		public DateTime KayitTarih { get; set; } = DateTime.UtcNow;
+
+        [DataType(DataType.Date)]
+        public DateTime KayitTarih { get; set; } = DateTime.UtcNow;
 
 		[Required]
 		[StringLength(50)]

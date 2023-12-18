@@ -18,7 +18,8 @@ namespace WebProje2023.Models
 		public int biletFiyat { get; set; }
 
 		[Required]
-		public DateTime tarihKalkis { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime tarihKalkis { get; set; }
 
 		public TimeSpan saatKalkis { get; set; }
 		public TimeSpan saatVaris { get; set; }
