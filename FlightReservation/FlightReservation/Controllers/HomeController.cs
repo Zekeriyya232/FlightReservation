@@ -1,5 +1,6 @@
 ﻿using FlightReservation.Entity;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using System.Diagnostics;
@@ -7,6 +8,7 @@ using System.Net.Sockets;
 using System.Security.Claims;
 using WebProje2023.Entity;
 using WebProje2023.Models;
+using WebProje2023.Services;
 
 namespace WebProje2023.Controllers
 {
@@ -16,13 +18,25 @@ namespace WebProje2023.Controllers
 		private readonly ILogger<HomeController> _logger;
 		private readonly DatabaseContext _databaseContex;
 		private readonly IConfiguration _configuration;
+		private readonly LanguageService _languageService;
 
 
-		public HomeController(DatabaseContext databaseContex, IConfiguration configuration , ILogger<HomeController> logger)
+		public HomeController(DatabaseContext databaseContex, IConfiguration configuration , ILogger<HomeController> logger,LanguageService languageService)
 		{
 			_databaseContex = databaseContex;
 			_configuration = configuration;
 			_logger = logger;
+			_languageService = languageService;
+		}
+
+		public IActionResult ChangeLanguage(string culture)
+		{
+			Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName,
+				CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)), new CookieOptions()
+				{
+					Expires = DateTimeOffset.UtcNow.AddYears(1)
+				});
+			return Redirect(Request.Headers["Referer"].ToString());
 		}
 
 
@@ -130,7 +144,8 @@ namespace WebProje2023.Controllers
 				yolcuSoyadi = kullanici.KullaniciSoyadi,
 				ucakModel = route.ucakModel,
 				koltukNo = koltukNumarasi,
-
+				tarihKalkis = route.tarihKalkis,
+				biletFiyat = route.biletFiyat,
 			};
 			_databaseContex.Ticket.Add(ticket);
 			_databaseContex.SaveChanges();
@@ -148,9 +163,11 @@ namespace WebProje2023.Controllers
 				yolcuSoyadi = kullanici.KullaniciSoyadi,
 				ucakModel = route.ucakModel,
 				koltukNo = koltukNumarasi,
+				tarihKalkis=route.tarihKalkis,
+				biletFiyat=route.biletFiyat,
 			};
 
-			return View("ShowTicket", ticketVM);
+			return RedirectToAction("MyTickets","Account",kullanici.Id);
 		}
 
 		public IActionResult ShowTicket(TicketVM ticketVM) {

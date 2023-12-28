@@ -6,16 +6,16 @@
 @foreach(TicketVM ticket in Model)
 {
    <div class="card text-white bg-primary mb-3 col-8">
-        <div class="card-header">Kalkış Tarihi : @ticket.tarihKalkis</div>
+        <div key=10 class="card-header">@_languageService.Getkey("dd").Value : @ticket.tarihKalkis.ToShortDateString()</div>
         <div class="card-body">
             <h5 class="card-title">@ticket.yolcuAdi @ticket.yolcuSoyadi</h5>
             <div class="row">
                 <div class="col-4">
-                    <p class="card-text col-3">@ticket.havalimaniKalkis <br />@ticket.sehirKalkis <br />@ticket.saatKalkis</p>
+                    <p class="card-text ">@ticket.havalimaniKalkis Havalimanı <br />@ticket.sehirKalkis <br />@ticket.saatKalkis.ToString(@"hh\:mm")</p>
                 </div>
 
                 <div class="col-4">
-                    <p class="card-text col-3 offset-2">@ticket.havalimaniVaris <br />@ticket.sehirVaris<br />@ticket.saatVaris</p>
+                    <p class="card-text  offset-2">@ticket.havalimaniVaris Havalimanı <br />@ticket.sehirVaris<br />@ticket.saatVaris.ToString(@"hh\:mm")</p>
                 </div>
             </div>
 

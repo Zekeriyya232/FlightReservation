@@ -45,9 +45,9 @@
 						<td>@ticket.havalimaniVaris</td>
 						<td>@ticket.sehirKalkis</td>
 						<td>@ticket.sehirVaris</td>					
-						<td>@ticket.tarihKalkis</td>
-						<td>@ticket.saatKalkis</td>
-						<td>@ticket.saatVaris</td>
+						<td>@ticket.tarihKalkis.ToShortDateString()</td>
+						<td>@ticket.saatKalkis.ToString(@"hh\:mm")</td>
+						<td>@ticket.saatVaris.ToString(@"hh\:mm")</td>
 						<td>@ticket.ucakModel</td>
 						<td>@ticket.biletFiyat</td>
 						<td>@ticket.kullaniciId</td>

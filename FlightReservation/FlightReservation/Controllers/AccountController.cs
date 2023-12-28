@@ -122,12 +122,14 @@ namespace WebProje2023.Controllers
 			return View(kullaniciProfil);
 		}
 
-		public IActionResult MyTickets(int Id)
+		public IActionResult MyTickets()
 		{
+            string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            int intId = Convert.ToInt32(id);
 
-			if (Id != null)
+            if (intId != null)
 			{
-				List<TicketDB> tickets = _databaseContex.Ticket.Where(x => x.kullaniciId == Id).ToList();
+				List<TicketDB> tickets = _databaseContex.Ticket.Where(x => x.kullaniciId == intId).ToList();
 				List<TicketVM> model = new();
 
 				foreach (TicketDB item in tickets)
@@ -144,6 +146,8 @@ namespace WebProje2023.Controllers
 						yolcuSoyadi = item.yolcuSoyadi,
 						ucakModel = item.ucakModel,
 						koltukNo = item.koltukNo,
+						biletFiyat=item.biletFiyat,
+						tarihKalkis= item.tarihKalkis,
 					});
 				}
 
@@ -175,6 +179,8 @@ namespace WebProje2023.Controllers
 		[HttpPost]
         public IActionResult ProfileEdit(int Id,ProfileEditVM profileEditVM)
 		{
+
+
 			if (ModelState.IsValid)
 			{
                 string md5Crypto = _configuration.GetValue<string>("AppSettings:MD5Crypto");

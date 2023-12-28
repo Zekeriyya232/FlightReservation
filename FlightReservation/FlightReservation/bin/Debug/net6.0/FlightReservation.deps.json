@@ -331,6 +331,14 @@
         "runtime": {
           "FlightReservation.dll": {}
         },
+        "resources": {
+          "en-US/FlightReservation.resources.dll": {
+            "locale": "en-US"
+          },
+          "tr-TR/FlightReservation.resources.dll": {
+            "locale": "tr-TR"
+          }
+        },
         "compile": {
           "FlightReservation.dll": {}
         }

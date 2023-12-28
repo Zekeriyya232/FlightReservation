@@ -365,3 +365,10 @@ D:\VStudio\FlightReservation\FlightReservation\obj\Debug\net6.0\refint\FlightRes
 D:\VStudio\FlightReservation\FlightReservation\obj\Debug\net6.0\FlightReservation.pdb
 D:\VStudio\FlightReservation\FlightReservation\obj\Debug\net6.0\FlightReservation.genruntimeconfig.cache
 D:\VStudio\FlightReservation\FlightReservation\obj\Debug\net6.0\ref\FlightReservation.dll
+D:\VStudio\FlightReservation\FlightReservation\bin\Debug\net6.0\en-US\FlightReservation.resources.dll
+D:\VStudio\FlightReservation\FlightReservation\bin\Debug\net6.0\tr-TR\FlightReservation.resources.dll
+D:\VStudio\FlightReservation\FlightReservation\obj\Debug\net6.0\FlightReservation.Resources.SharedResource.en-US.resources
+D:\VStudio\FlightReservation\FlightReservation\obj\Debug\net6.0\FlightReservation.Resources.SharedResource.tr-TR.resources
+D:\VStudio\FlightReservation\FlightReservation\obj\Debug\net6.0\FlightReservation.csproj.GenerateResource.cache
+D:\VStudio\FlightReservation\FlightReservation\obj\Debug\net6.0\en-US\FlightReservation.resources.dll
+D:\VStudio\FlightReservation\FlightReservation\obj\Debug\net6.0\tr-TR\FlightReservation.resources.dll

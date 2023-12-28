@@ -7,14 +7,14 @@
 
 <div class="row">
 	<div class="col">
-		<h1 class="display-4">@ViewData["Title"]</h1>
+		<h1 key=22 class="display-4">Kullanıcılar</h1>
 		<hr />
 	</div>
 </div>
 
 <div class="row mb-3">
 	<div class="col">
-		<a asp-action="KullaniciCreate" class="btn btn-primary btn-sm"><i class="fa fa-plus me-2"></i>Yeni Kullanıcı</a>
+		<a key=23 asp-action="KullaniciCreate" class="btn btn-primary btn-sm"><i class="fa fa-plus me-2"></i>Yeni Kullanıcı</a>
 	</div>
 </div>
 
@@ -24,12 +24,12 @@
 			<thead>
 				<tr>
 					<th>Id</th>
-					<th>Adı</th>
-					<th>Soyadı</th>
-					<th>Locked</th>
+					<th key=24>Adı</th>
+					<th key =25>Soyadı</th>
+					<th >Locked</th>
 					<th>Role</th>
-					<th>Telefon</th>
-					<th>Kayıt Tarihi</th>
+					<th key=26>Telefon</th>
+					<th key=27>Kayıt Tarihi</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -53,8 +53,8 @@
 						<td>@kullanici.Phone</td>
 						<td>@kullanici.KayitTarih</td>
 						<td class="text-end">
-							<a asp-action="KullaniciEdit" asp-controller="Admin" asp-route-id="@kullanici.Id" class="btn btn-info btn-sm text-white"><i class="fa fa-edit me-2"></i>Düzenle</a>
-							<a asp-action="KullaniciDelete" asp-route-id="@kullanici.Id"
+							<a key=28 asp-action="KullaniciEdit" asp-controller="Admin" asp-route-id="@kullanici.Id" class="btn btn-info btn-sm text-white"><i class="fa fa-edit me-2"></i>Düzenle</a>
+							<a key=29 asp-action="KullaniciDelete" asp-route-id="@kullanici.Id"
 							   onclick="return confirm('Bu kullanıcıyı silmek istediğinize emin misiniz @kullanici.kullaniciAdi+@kullanici.KullaniciSoyadi? ')"
 							   class="btn btn-danger btn-sm text-white"><i class="fa fa-trash me-2"></i>Sil</a>
 

@@ -26,7 +26,7 @@
                                     <span asp-validation-for=" kullaniciEmail" class="text-danger small"></span>
                                     <input asp-for=" kullaniciEmail" type="email" class="form-control"
                                            placeholder="Email Adress" />
-                                    <label class="form-label" asp-for=" kullaniciEmail">Username</label>
+                                    <label class="form-label" asp-for=" kullaniciEmail">@_languageService.Getkey("name").Value</label>
 
                                 </div>
 
@@ -65,14 +65,14 @@
                                         <span asp-validation-for="kullaniciAdi" class="text-warning small"></span>
                                         <input asp-for=" kullaniciAdi" type="text" class="form-control"
                                                placeholder="" />
-                                        <label class="form-label" asp-for=" kullaniciAdi">Kullanıcı Adı</label>
+                                        <label class="form-label" asp-for=" kullaniciAdi">@_languageService.Getkey("name").Value</label>
 
                                     </div>
                                     <div class="form-outline col-6 mb-2">
                                         <span asp-validation-for="kullaniciSoyadi" class="text-warning small"></span>
                                         <input asp-for=" kullaniciSoyadi" type="text" class="form-control"
                                                placeholder="" />
-                                        <label class="form-label" asp-for=" kullaniciSoyadi">Kullanıcı Soyadı</label>
+                                        <label class="form-label" asp-for=" kullaniciSoyadi">@_languageService.Getkey("surname").Value</label>
 
                                     </div>
                                 </div>
@@ -81,14 +81,14 @@
                                     <span asp-validation-for=" Phone" class="text-warning small"></span>
                                     <input asp-for="Phone" type="text" class="form-control"
                                            placeholder="000 000 0000" pattern="[0-9]{3} [0-9]{3} [0-9]{4}" />
-                                    <label class="form-label" asp-for="Phone">Telefon</label>
+                                    <label class="form-label" asp-for="Phone">@_languageService.Getkey("phone").Value</label>
 
                                 </div>
 
                                 <div class="form-outline mb-2">
                                     <span asp-validation-for="kullaniciDogum" class="text-warning small"></span>
                                     <input asp-for="kullaniciDogum" type="date" class="form-control" />
-                                    <label class="form-label" asp-for="kullaniciDogum">Doğum Tarihi</label>
+                                    <label class="form-label" asp-for="kullaniciDogum">@_languageService.Getkey("bd").Value</label>
 
                                 </div>
 

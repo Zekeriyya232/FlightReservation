@@ -1,4 +1,5 @@
-﻿using FlightReservation.Entity;
+﻿using FlightReservation.Controllers;
+using FlightReservation.Entity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.AspNetCore.Mvc;
@@ -29,7 +30,9 @@ namespace WebProje2023.Controllers
 
 		public IActionResult KullaniciGet()
 		{
-			List<KullaniciDB> kullanicilar = _databaseContex.Kullanici.ToList();
+			flightApiControllerResponse response = new();
+
+			List<KullaniciDB> kullanicilar = response.GetAllKullanici().Result;
 			List<KullaniciVM> model = new List<KullaniciVM>();
 
 			// _databaseContex.Kullanici.Select(x=>new KullaniciVM { 

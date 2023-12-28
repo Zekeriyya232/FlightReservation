@@ -13,7 +13,7 @@
 		<div class="col-md-5 border-right">
 			
 			<div class="d-flex justify-content-between align-items-center mb-3">
-				<h4 class="text-right">Profile Settings</h4>
+				<h4 class="text-right">@_languageService.Getkey("ps").Value</h4>
 			</div>
 
 			<form asp-action="ProfileEdit">
@@ -21,14 +21,14 @@
 					<span asp-validation-for="kullaniciAdi" class="text-warning small"></span>
 					<input asp-for=" kullaniciAdi" type="text" class="form-control"
 						   placeholder="" value="@Model.kullaniciAdi" />
-					<label class="form-label" asp-for=" kullaniciAdi">Kullanıcı Adı</label>
+					<label class="form-label" asp-for=" kullaniciAdi">@_languageService.Getkey("name").Value</label>
 
 				</div>
 				<div class="form-outline col-6 mb-2">
 					<span asp-validation-for="kullaniciSoyadi" class="text-warning small"></span>
 					<input asp-for=" kullaniciSoyadi" type="text" class="form-control"
 						   placeholder="" value="@Model.kullaniciSoyadi"  />
-					<label class="form-label" asp-for=" kullaniciSoyadi">Kullanıcı Soyadı</label>
+					<label class="form-label" asp-for=" kullaniciSoyadi">@_languageService.Getkey("surname").Value</label>
 
 				</div>
 
@@ -37,14 +37,14 @@
 					<span asp-validation-for=" Phone" class="text-warning small"></span>
 					<input asp-for="Phone" type="text" class="form-control"
 						   placeholder="000 000 0000" pattern="[0-9]{3} [0-9]{3} [0-9]{4}" value="@Model.Phone"  />
-					<label class="form-label" asp-for="Phone">Telefon</label>
+					<label class="form-label" asp-for="Phone">@_languageService.Getkey("phone").Value</label>
 
 				</div>
 
 				<div class="form-outline mb-2">
 					<span asp-validation-for="kullaniciDogum" class="text-warning small"></span>
-					<input asp-for="kullaniciDogum" type="text" class="form-control" value="@Model.kullaniciDogum"  />
-					<label class="form-label" asp-for="kullaniciDogum">Doğum Tarihi</label>
+					<input asp-for="kullaniciDogum" type="text" class="form-control" value="@Model.kullaniciDogum.ToShortDateString()"  />
+					<label class="form-label" asp-for="kullaniciDogum">@_languageService.Getkey("bd").Value</label>
 
 				</div>
 
@@ -72,30 +72,13 @@
 
 				<div class="text-center pt-1 mb-5 pb-1">
 					<button class="btn btn-primary col-12 gradient-custom-2 mb-3" type="submit">
-						<i class="fa-solid fa-save me-2"></i> Save
+						<i class="fa-solid fa-save me-2"></i> @_languageService.Getkey("save").Value
 					</button>
 					<br />
 				</div>
 
 
 			</form>
-			<!--
-				<div class="p-3 py-5">
-				<div class="d-flex justify-content-between align-items-center mb-3">
-					<h4 class="text-right">Profile Settings</h4>
-				</div>
-				<div class="row mt-2">
-					<div class="col-md-6"><label class="labels">Adi</label><input type="text" class="form-control" placeholder="" value="@Model.kullaniciAdi"></div>
-					<div class="col-md-6"><label class="labels">Soyadi</label><input type="text" class="form-control" value="" placeholder="@Model.kullaniciSoyadi"></div>
-				</div>
-				<div class="row mt-3">
-					<div class="col-md-12"><label class="labels">Telefon Numarası</label><input type="text" class="form-control" placeholder="000 000 0000" value="@Model.Phone"></div>
-					<div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="" value="@Model.kullaniciEmail"></div>
-					<div class="col-md-12"><label class="labels">Doğum Tarihi</label><input type="text" class="form-control" placeholder="" value="@Model.kullaniciDogum"></div>
-				</div>
-				<div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
-			</div>
-			-->
 
 		</div>
 	</div>
