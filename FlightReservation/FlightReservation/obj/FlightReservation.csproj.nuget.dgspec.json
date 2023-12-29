@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\VStudio\\FlightReservation\\FlightReservation\\FlightReservation.csproj": {}
+    "C:\\Users\\zeko2\\OneDrive\\Belgeler\\GitHub\\FlightReservation\\FlightReservation\\FlightReservation\\FlightReservation.csproj": {}
   },
   "projects": {
-    "D:\\VStudio\\FlightReservation\\FlightReservation\\FlightReservation.csproj": {
+    "C:\\Users\\zeko2\\OneDrive\\Belgeler\\GitHub\\FlightReservation\\FlightReservation\\FlightReservation\\FlightReservation.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\VStudio\\FlightReservation\\FlightReservation\\FlightReservation.csproj",
+        "projectUniqueName": "C:\\Users\\zeko2\\OneDrive\\Belgeler\\GitHub\\FlightReservation\\FlightReservation\\FlightReservation\\FlightReservation.csproj",
         "projectName": "FlightReservation",
-        "projectPath": "D:\\VStudio\\FlightReservation\\FlightReservation\\FlightReservation.csproj",
+        "projectPath": "C:\\Users\\zeko2\\OneDrive\\Belgeler\\GitHub\\FlightReservation\\FlightReservation\\FlightReservation\\FlightReservation.csproj",
         "packagesPath": "C:\\Users\\zeko2\\.nuget\\packages\\",
-        "outputPath": "D:\\VStudio\\FlightReservation\\FlightReservation\\obj\\",
+        "outputPath": "C:\\Users\\zeko2\\OneDrive\\Belgeler\\GitHub\\FlightReservation\\FlightReservation\\FlightReservation\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\zeko2\\AppData\\Roaming\\NuGet\\NuGet.Config",

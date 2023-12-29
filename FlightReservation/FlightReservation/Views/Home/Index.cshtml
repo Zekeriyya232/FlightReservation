@@ -3,9 +3,12 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="row justify-content-between" id="indexSayfa">
-    <form asp-action="Index">
-        <div>
+<div class="row justify-content-center" id="indexSayfa">
+    <form asp-action="Index" style="margin-top:60px">
+        <div class="text-center">
+            <h3>HOŞ GELDİNİZ</h3>
+        </div>
+        <div class="text-center pt-1 mb-5 pb-1">
             <span asp-validation-for="havalimaniKalkis" class="form-label"></span>
             <select asp-for="havalimaniKalkis" class="form-label col-4" id="kalkis">
                 <option key=1 value="">@_languageService.Getkey("cda").Value</option>
@@ -16,10 +19,10 @@
             </select>
         </div>
 
-        <div>
+        <div class="text-center pt-1 mb-5 pb-1">
             <span asp-validation-for="havalimaniVaris" class="form-label"></span>
             <select asp-for="havalimaniVaris" class="form-label col-4" id="varis">
-                <option key=2 value="">@_languageService.Getkey("caa").Value</option>
+                <option key=2 value="" style="border-radius:10px">@_languageService.Getkey("caa").Value</option>
                 @foreach (var item in (List<string>)ViewBag.airportList)
                 {
                     <option value="@item">@item</option>
@@ -28,7 +31,7 @@
 
         </div>
 
-        <div class="form-outline mb-2 col-4">
+        <div class="text-center pt-1 mb-5 pb-1 col-4 offset-4">
             <span asp-validation-for="tarih" class="text-warning small"></span>
             <input asp-for="tarih" type="date" class="form-control" id="tarih" />
             <label key=3 class="form-label" asp-for="tarih">@_languageService.Getkey("dd").Value</label>
@@ -36,7 +39,7 @@
         </div>
 
         <div class="text-center pt-1 mb-5 pb-1">
-            <button key=4 class="btn btn-primary col-12 gradient-custom-2 mb-3" id="btn" type="submit">
+            <button key=4 class="btn btn-primary col-6 gradient-custom-2 mb-2" id="btn" type="submit">
                 <i class="fa-solid fa-magnifying-glass fa-bounce"></i> @_languageService.Getkey("sf").Value
             </button>
             <br />
