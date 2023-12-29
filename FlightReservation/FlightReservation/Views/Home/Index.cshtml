@@ -3,11 +3,11 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="row justify-content-between">
+<div class="row justify-content-between" id="indexSayfa">
     <form asp-action="Index">
         <div>
             <span asp-validation-for="havalimaniKalkis" class="form-label"></span>
-            <select asp-for="havalimaniKalkis" class="form-label col-4">
+            <select asp-for="havalimaniKalkis" class="form-label col-4" id="kalkis">
                 <option key=1 value="">@_languageService.Getkey("cda").Value</option>
                 @foreach (var item in (List<string>)ViewBag.airportList)
                 {
@@ -18,7 +18,7 @@
 
         <div>
             <span asp-validation-for="havalimaniVaris" class="form-label"></span>
-            <select asp-for="havalimaniVaris" class="form-label col-4">
+            <select asp-for="havalimaniVaris" class="form-label col-4" id="varis">
                 <option key=2 value="">@_languageService.Getkey("caa").Value</option>
                 @foreach (var item in (List<string>)ViewBag.airportList)
                 {
@@ -30,13 +30,13 @@
 
         <div class="form-outline mb-2 col-4">
             <span asp-validation-for="tarih" class="text-warning small"></span>
-            <input asp-for="tarih" type="date" class="form-control" />
+            <input asp-for="tarih" type="date" class="form-control" id="tarih" />
             <label key=3 class="form-label" asp-for="tarih">@_languageService.Getkey("dd").Value</label>
 
         </div>
 
         <div class="text-center pt-1 mb-5 pb-1">
-            <button key=4 class="btn btn-primary col-12 gradient-custom-2 mb-3" type="submit">
+            <button key=4 class="btn btn-primary col-12 gradient-custom-2 mb-3" id="btn" type="submit">
                 <i class="fa-solid fa-magnifying-glass fa-bounce"></i> @_languageService.Getkey("sf").Value
             </button>
             <br />
