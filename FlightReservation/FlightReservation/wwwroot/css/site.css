@@ -20,3 +20,75 @@ body {
 .navbar-text-color{
     color:black;
 }
+#pan:hover {
+    background-color: #c0c0c0;
+    border-radius: 5px;
+}
+
+#ana:hover {
+    background-color: #c0c0c0;
+    border-radius: 5px;
+}
+
+#yon:hover {
+    background-color: #c0c0c0;
+    border-radius: 5px;
+}
+
+#bilet:hover {
+    background-color: #c0c0c0;
+    border-radius: 5px;
+}
+
+#log:hover {
+    background-color: #c0c0c0;
+    border-radius: 5px;
+}
+
+#sign:hover {
+    background-color: #c0c0c0;
+    border-radius: 5px;
+}
+#indexSayfa {
+    background-color:#949edc; 
+    border-radius:10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5) 
+}
+#kalkis {
+    border-radius:10px; 
+    box-shadow:none;height:35px; 
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+#varis {
+    border-radius: 10px;
+    height: 35px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    
+}
+#tarih {
+    border-radius: 10px;
+    border-radius: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+#btn {
+    border-radius: 10px;
+    background-color: #c0c0c0;
+}
+/*profil sayfasý */
+#düzenle {
+   background-color:#c0c0c0;
+}
+/*loginsayfa*/
+#loginsayfa {
+    background-color: #949edc;
+}
+#btn {
+    background-color: #c0c0c0;
+}
+
+#signup {
+    background-color: #949edc;
+}
+.signup-input {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
